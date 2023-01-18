@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: none;
+    /* for iOS Safari */
+    text-size-adjust: none;
+    /* for other mobile browsers */
+    font-size: 62.5%;
+    /* (62.5/100) * 16px = 10px */
+    font-family: "Roboto Mono", sans-serif;
+    line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 4rem;
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.wrapper {
+    max-width: 700px;
+    font-size: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+.header h1 {
+    line-height: 1.0;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+.header span {
+    font-weight: 500;
+    font-size: 2rem;
+}
+.header p {
+    max-width: 50rem;
+}
+
+code {
+    display: block;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: aliceblue;
+    line-height: 1.5;
+}
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    border: 0.1rem solid black;
+    margin-bottom: 5rem;
+}
+
+thead {
+    background-color: aliceblue;
+    border-bottom: 0.1rem solid black;
+}
+
+th,
+td {
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1.5rem;
+}
+
+hr {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+}
+
+.question-card {
+    margin-bottom: 50px;
+}
+
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    color: blue;
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: 0.2s;
+}
+.btn:hover {
+    background-color: #d0e6f9;
+}
+.btn svg {
+    font-size: 30px;
+}
