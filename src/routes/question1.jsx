@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto'
+import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
@@ -26,8 +27,8 @@ export default function question1() {
         return (
             <React.Fragment>
                 <div className="wrapper">
-                    <a href="/">Back</a>
-                    <h3>Data is loading <Loading /></h3>
+                    <a href="/"><ArrowLeft /> Back</a>
+                    <h3>Data is loading <Loading className="rotating"/></h3>
                 </div>
             </React.Fragment>
         )

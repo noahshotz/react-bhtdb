@@ -22,7 +22,7 @@ export default function Publisher() {
     }, [])
 
     if (isLoading) {
-        return <h3>Data is loading <Loading /></h3>
+        return <h3>Data is loading <Loading className="rotating"/></h3>
     }
 
     return (
