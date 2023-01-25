@@ -18,7 +18,6 @@ async function getSampleData(isLoading, setLoading, myData, setMyData) {
         }).then(response => {
         setMyData(response.data);
         setLoading(false);
-
     })
 }
 
