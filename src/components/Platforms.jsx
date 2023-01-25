@@ -7,7 +7,7 @@ import { FiLoader as Loading } from "react-icons/fi"
 async function getSampleData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
-    const request = "platforms"
+    const request = "platform"
     const fetchURL = proxy + baseURL + request
     
     await axios.get(fetchURL, 
