@@ -5,7 +5,7 @@ import { FiLoader as Loading } from "react-icons/fi"
 
 
 async function getSampleData(isLoading, setLoading, myData, setMyData) {
-    const url = "http://localhost:8010/proxy/publisher"
+    const url = "https://web-production-0fb1.up.railway.app/www.backend-bhtdb-production.up.railway.app/publisher"
     await axios.get(url).then(response => {
         setMyData(response.data);
         setLoading(false);
@@ -22,7 +22,7 @@ export default function Publisher() {
     }, [])
 
     if (isLoading) {
-        return <h3>Data is loading <Loading className="rotating"/></h3>
+        return <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
     }
 
     return (
