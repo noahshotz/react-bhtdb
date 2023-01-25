@@ -7,8 +7,17 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 import { FiLoader as Loading } from "react-icons/fi"
 
 async function getQ5(isLoading, setLoading, myData, setMyData) {
-    const url = "http://localhost:8010/proxy/q5"
-    await axios.get(url).then(response => {
+    const proxy = "https://web-production-0fb1.up.railway.app/"
+    const baseURL = "backend-bhtdb-production.up.railway.app/"
+    const request = "q5"
+    const fetchURL = proxy + baseURL + request
+    
+    await axios.get(fetchURL, 
+        {
+            headers: {
+                "x-requested-with": "XMLHttpRequest"
+            }
+        }).then(response => {
         setMyData(response.data);
         setLoading(false);
     })
