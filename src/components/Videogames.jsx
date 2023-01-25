@@ -5,7 +5,7 @@ import { FiLoader as Loading } from "react-icons/fi"
 
 
 async function getSampleData(isLoading, setLoading, myData, setMyData) {
-    const url = "https://web-production-0fb1.up.railway.app/www.backend-bhtdb-production.up.railway.app/videogames"
+    const url = "https://web-production-0fb1.up.railway.app/backend-bhtdb-production.up.railway.app/videogames"
     // set the request headers "origin,x-requested-with" to "https://web-production-0fb1.up.railway.app" and "XMLHttpRequest"
 
     await axios.get(url, 
