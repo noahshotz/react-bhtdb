@@ -5,10 +5,20 @@ import { FiLoader as Loading } from "react-icons/fi"
 
 
 async function getSampleData(isLoading, setLoading, myData, setMyData) {
-    const url = "https://web-production-0fb1.up.railway.app/www.backend-bhtdb-production.up.railway.app/publisher"
-    await axios.get(url).then(response => {
+    const proxy = "https://web-production-0fb1.up.railway.app/"
+    const baseURL = "https://www.backend-bhtdb-production.up.railway.app/"
+    const request = "publisher"
+    const fetchURL = proxy + baseURL + request
+    
+    await axios.get(fetchURL, 
+        {
+            headers: {
+                "x-requested-with": "XMLHttpRequest"
+            }
+        }).then(response => {
         setMyData(response.data);
         setLoading(false);
+
     })
 }
 
