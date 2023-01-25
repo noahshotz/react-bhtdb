@@ -11,7 +11,6 @@ async function getSampleData(isLoading, setLoading, myData, setMyData) {
     await axios.get(url, 
         {
             headers: {
-                "origin": "https://web-production-0fb1.up.railway.app",
                 "x-requested-with": "XMLHttpRequest"
             }
         }).then(response => {
