@@ -36,13 +36,13 @@ export default function question1() {
         return (
             <React.Fragment>
                 <div className="wrapper">
-                    <a href="/"><ArrowLeft /> Back</a>
+                    <a href="/" className="btn-back"><ArrowLeft /> Go back</a>
                     <h2>Frage 1</h2>
                     <h3>5. Wie sah die Verteilung auf verschiedenen Plattformen aus?</h3>
                     <h4>Abfrage:</h4>
                     <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
                     <h4>Rückgabe:</h4>
-                    <h3>Data is loading <Loading className="rotating"/></h3>
+                    <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
                 </div>
             </React.Fragment>
         )
@@ -52,7 +52,7 @@ export default function question1() {
         return (
             <React.Fragment>
                 <div className="wrapper">
-                    <a href="/">Back</a>
+                    <a href="/" className="btn-back"><ArrowLeft /> Go back</a>
                     <h2>Frage 1</h2>
                     <h3>5. Wie sah die Verteilung auf verschiedenen Plattformen aus?</h3>
                     <h4>Abfrage:</h4>
