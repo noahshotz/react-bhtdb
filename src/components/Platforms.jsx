@@ -45,7 +45,7 @@ export default function Platforms() {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th className="id-col">ID</th>
                             <th>Name</th>
                             <th>Hersteller</th>
                             <th>Release year</th>

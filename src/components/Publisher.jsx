@@ -44,7 +44,7 @@ export default function Publisher() {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th className="id-col">ID</th>
                             <th>Name</th>
                             <th>Sitz</th>
                             <th>Gründung</th>
