@@ -56,7 +56,7 @@ export default function question1() {
                     <table>
                         <thead>
                             <tr>
-                                <th>pId</th>
+                                <th className="id-col">pId</th>
                                 <th>Plattform</th>
                                 <th>Anfragen</th>
                             </tr>

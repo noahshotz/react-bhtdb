@@ -45,7 +45,7 @@ export default function Videogames() {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th className="id-col">ID</th>
                             <th>Titel</th>
                             <th>Max. players</th>
                             <th>Genre</th>
