@@ -32,7 +32,15 @@ export default function Videogames() {
     }, [])
 
     if (isLoading) {
-        return <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
+        return (
+            <React.Fragment>
+                <h3>Tabelle <i>videogames</i></h3>
+                <h4>Abfrage:</h4>
+                <code>SELECT * from videogames LIMIT 5</code>
+                <h4>Rückgabe:</h4>
+                <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
+            </React.Fragment>
+        )
     }
 
     return (

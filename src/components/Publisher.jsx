@@ -31,7 +31,15 @@ export default function Publisher() {
     }, [])
 
     if (isLoading) {
-        return <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
+        return (
+            <React.Fragment>
+                <h3>Tabelle <i>publisher</i></h3>
+                <h4>Abfrage:</h4>
+                <code>SELECT * FROM publisher</code>
+                <h4>Rückgabe:</h4>
+                <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
+            </React.Fragment>
+        )
     }
 
     return (

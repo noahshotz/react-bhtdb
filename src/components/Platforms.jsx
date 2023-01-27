@@ -9,17 +9,17 @@ async function getSampleData(isLoading, setLoading, myData, setMyData) {
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "platform"
     const fetchURL = proxy + baseURL + request
-    
-    await axios.get(fetchURL, 
+
+    await axios.get(fetchURL,
         {
             headers: {
                 "x-requested-with": "XMLHttpRequest"
             }
         }).then(response => {
-        setMyData(response.data);
-        setLoading(false);
+            setMyData(response.data);
+            setLoading(false);
 
-    })
+        })
 }
 
 export default function Platforms() {
@@ -32,7 +32,15 @@ export default function Platforms() {
     }, [])
 
     if (isLoading) {
-        return <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
+        return (
+            <React.Fragment>
+                <h3>Tabelle <i>platform</i></h3>
+                <h4>Abfrage:</h4>
+                <code>SELECT * FROM platform</code>
+                <h4>Rückgabe:</h4>
+                <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+            </React.Fragment>
+        )
     }
 
     return (
