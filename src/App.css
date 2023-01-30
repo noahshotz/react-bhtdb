@@ -27,6 +27,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background-color: #f8f8f8;
 }
 
 img {
@@ -44,6 +45,7 @@ h1 {
 h2 {
     font-size: 2.5rem;
     font-weight: 600;
+    margin-top: 0;
 }
 
 h3 {
@@ -65,17 +67,13 @@ h4 {
 }
 
 .wrapper {
-    max-width: 700px;
+    max-width: 800px;
     font-size: 1.5rem;
     margin-top: 5rem;
     margin-bottom: 5rem;
 }
 
 .header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
     text-align: center;
     margin-bottom: 5rem;
 }
@@ -90,7 +88,8 @@ h4 {
     font-size: 2rem;
 }
 .header p {
-    max-width: 50rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
 }
 
 code {
@@ -98,6 +97,7 @@ code {
     padding: 2rem;
     border-radius: 5px;
     background-color: aliceblue;
+    color: blue;
     line-height: 1.5;
 }
 
@@ -128,17 +128,23 @@ td {
     width: 4rem;
 }
 
-hr {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-    border: 0.1rem solid black;
-    border-radius: 1rem;
+.cp-ct {
+    padding: 3rem;
+    margin-bottom: 3rem;
+    border: solid 1px aliceblue;
+    border-radius: 5px;
+    background: white;
 }
 
 .question-card {
     margin-bottom: 50px;
 }
 
+.flex-ct {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
 
 .btn {
     display: inline-flex;
@@ -153,7 +159,6 @@ hr {
     padding-right: 25px;
     border-radius: 5px;
     text-decoration: none;
-    margin-top: 15px;
     transition: 0.2s;
 }
 .btn:hover {
@@ -171,6 +176,7 @@ hr {
     font-size: 1.5rem;
     color: blue;
     gap: 0.5rem;
+    margin-bottom: 2rem;
 }
 .btn-back svg {
     font-size: 2.2rem;

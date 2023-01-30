@@ -18,7 +18,7 @@ const QuestionsArr = [
   },
   {
     // Frage 3
-    question: "PLACEHOLDER",
+    question: "Waren Solo oder Co-OP Spiele häufiger in den Suchanfragen?",
     query: "SELECT ...",
   },
   {
@@ -28,7 +28,7 @@ const QuestionsArr = [
   },
   {
     // Frage 5
-    question: "PLACEHOLDER",
+    question: "Wie sah die Verteilung auf verschiedenen Plattformen aus?",
     query:
       "SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC",
   },

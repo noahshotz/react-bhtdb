@@ -7,6 +7,14 @@ import {
   Route,
 } from "react-router-dom"
 
+// import routes
+// datasets
+import Querydata from './routes/querydata'
+import Platforms from './routes/platforms'
+import Publisher from './routes/publisher'
+import Videogames from './routes/videogames'
+
+// questions
 import Question1 from './routes/question1'
 import Question2 from './routes/question2'
 import Question3 from './routes/question3'
@@ -22,6 +30,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+
+      <Route path="querydata" element={<Querydata />} />
+      <Route path="platforms" element={<Platforms />} />
+      <Route path="publisher" element={<Publisher />} />
+      <Route path="videogames" element={<Videogames />} />
 
       <Route path="question1" element={<Question1 />} />
       <Route path="question2" element={<Question2 />} />

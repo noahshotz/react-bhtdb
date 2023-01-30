@@ -9,24 +9,27 @@ import { FiLoader as Loading } from "react-icons/fi"
 async function getQ5(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
-    const request = "q5"
+    const request = "q1"
     const fetchURL = proxy + baseURL + request
-    
-    await axios.get(fetchURL, 
+
+    await axios.get(fetchURL,
         {
             headers: {
                 "x-requested-with": "XMLHttpRequest"
             }
         }).then(response => {
-        setMyData(response.data);
-        setLoading(false);
-    })
+            setMyData(response.data);
+            setLoading(false);
+        })
 }
 
 export default function question1() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
+
+    const i = 1
+    const question = "Was waren die Top 10 Computerspiele?"
 
     useEffect(() => {
         getQ5(isLoading, setLoading, myData, setMyData)
@@ -37,12 +40,14 @@ export default function question1() {
             <React.Fragment>
                 <div className="wrapper">
                     <a href="/" className="btn-back"><ArrowLeft /> Go back</a>
-                    <h2>Frage 1</h2>
-                    <h3>5. Wie sah die Verteilung auf verschiedenen Plattformen aus?</h3>
-                    <h4>Abfrage:</h4>
-                    <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
-                    <h4>Rückgabe:</h4>
-                    <h3 className="isLoading">Data is loading <Loading className="rotating"/></h3>
+                    <div className="cp-ct">
+                        <h2>Frage {i}</h2>
+                        <h3>{question}</h3>
+                        <h4>Abfrage:</h4>
+                        <code>SELECT videogames.gId, videogames.title as game, COUNT(*) AS count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10</code>
+                        <h4>Rückgabe:</h4>
+                        <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+                    </div>
                 </div>
             </React.Fragment>
         )
@@ -53,42 +58,44 @@ export default function question1() {
             <React.Fragment>
                 <div className="wrapper">
                     <a href="/" className="btn-back"><ArrowLeft /> Go back</a>
-                    <h2>Frage 1</h2>
-                    <h3>5. Wie sah die Verteilung auf verschiedenen Plattformen aus?</h3>
-                    <h4>Abfrage:</h4>
-                    <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
-                    <h4>Rückgabe:</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th className="id-col">pId</th>
-                                <th>Plattform</th>
-                                <th>Anfragen</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {myData.map((rows) => (
-                                <tr key={rows.pId}>
-                                    <td>{rows.pId}</td>
-                                    <td>{rows.platform}</td>
-                                    <td>{rows.count}</td>
+                    <div className="cp-ct">
+                        <h2>Frage {i}</h2>
+                        <h3>{question}</h3>
+                        <h4>Abfrage:</h4>
+                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <h4>Rückgabe:</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className="id-col">gId</th>
+                                    <th>Spiel</th>
+                                    <th>Anfragen</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <Bar
-                        datasetIdKey='id'
-                        data={{
-                            labels: myData.map((label) => (label.platform)),
-                            datasets: [
-                                {
-                                    id: 1,
-                                    label: 'Plattformen',
-                                    data: myData.map((label) => (label.count)),
-                                }
-                            ],
-                        }}
-                    />
+                            </thead>
+                            <tbody>
+                                {myData.map((rows) => (
+                                    <tr key={rows.gId}>
+                                        <td>{rows.gId}</td>
+                                        <td>{rows.game}</td>
+                                        <td>{rows.count}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <Bar
+                            datasetIdKey='id'
+                            data={{
+                                labels: myData.map((label) => (label.game)),
+                                datasets: [
+                                    {
+                                        id: 1,
+                                        label: 'Anfragen',
+                                        data: myData.map((label) => (label.count)),
+                                    }
+                                ],
+                            }}
+                        />
+                    </div>
                 </div>
             </React.Fragment>
         )
