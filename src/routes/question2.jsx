@@ -6,10 +6,10 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ5(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
-    const request = "q5"
+    const request = "q2"
     const fetchURL = proxy + baseURL + request
 
     await axios.get(fetchURL,
@@ -32,7 +32,7 @@ export default function question1() {
     const question = "Welche Genre waren am gefragtesten?"
 
     useEffect(() => {
-        getQ5(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -44,7 +44,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>SELECT videogames.genre, count(*) as count from QUERYDATA inner join videogames on QUERYDATA.QUERY LIKE concat('% ', REPLACE(videogames.title, 'The ', ''),' %') GROUP BY videogames.genre order by count desc</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -62,21 +62,21 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>SELECT videogames.genre, count(*) as count from QUERYDATA inner join videogames on QUERYDATA.QUERY LIKE concat('% ', REPLACE(videogames.title, 'The ', ''),' %') GROUP BY videogames.genre order by count desc</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">pId</th>
+                                    <th className="id-col">#</th>
                                     <th>Plattform</th>
                                     <th>Anfragen</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows) => (
-                                    <tr key={rows.pId}>
-                                        <td>{rows.pId}</td>
-                                        <td>{rows.platform}</td>
+                                {myData.map((index, rows) => (
+                                    <tr key={index}>
+                                        <td>{index}</td>
+                                        <td>{rows.genre}</td>
                                         <td>{rows.count}</td>
                                     </tr>
                                 ))}
@@ -85,11 +85,11 @@ export default function question1() {
                         <Bar
                             datasetIdKey='id'
                             data={{
-                                labels: myData.map((label) => (label.platform)),
+                                labels: myData.map((label) => (label.genre)),
                                 datasets: [
                                     {
                                         id: 1,
-                                        label: 'Plattformen',
+                                        label: 'Genre',
                                         data: myData.map((label) => (label.count)),
                                     }
                                 ],
