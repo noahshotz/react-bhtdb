@@ -6,10 +6,10 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ5(isLoading, setLoading, myData, setMyData) {
+async function getQ8(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
-    const request = "q5"
+    const request = "q8"
     const fetchURL = proxy + baseURL + request
 
     await axios.get(fetchURL,
@@ -23,16 +23,16 @@ async function getQ5(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question1() {
+export default function question8() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
-    const i = 8
+    const i = 1
     const question = "Welche Spiele verzeichnen eine Häufung an (oder gar keine) Suchen nach Cheatcodes?"
 
     useEffect(() => {
-        getQ5(isLoading, setLoading, myData, setMyData)
+        getQ8(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -44,7 +44,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>SELECT videogames.gId, videogames.title as game, COUNT(*) AS count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -67,16 +67,16 @@ export default function question1() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">pId</th>
-                                    <th>Plattform</th>
+                                    <th className="id-col">gId</th>
+                                    <th>Spiel</th>
                                     <th>Anfragen</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {myData.map((rows) => (
-                                    <tr key={rows.pId}>
-                                        <td>{rows.pId}</td>
-                                        <td>{rows.platform}</td>
+                                    <tr key={rows.gId}>
+                                        <td>{rows.gId}</td>
+                                        <td>{rows.game}</td>
                                         <td>{rows.count}</td>
                                     </tr>
                                 ))}
@@ -85,11 +85,11 @@ export default function question1() {
                         <Bar
                             datasetIdKey='id'
                             data={{
-                                labels: myData.map((label) => (label.platform)),
+                                labels: myData.map((label) => (label.game)),
                                 datasets: [
                                     {
                                         id: 1,
-                                        label: 'Plattformen',
+                                        label: `Anfragen, die das Wort "cheats" enthielten`,
                                         data: myData.map((label) => (label.count)),
                                     }
                                 ],

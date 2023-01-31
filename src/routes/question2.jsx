@@ -74,8 +74,8 @@ export default function question1() {
                             </thead>
                             <tbody>
                                 {myData.map((index, rows) => (
-                                    <tr key={index}>
-                                        <td>{index}</td>
+                                    <tr>
+                                        <td>#</td>
                                         <td>{rows.genre}</td>
                                         <td>{rows.count}</td>
                                     </tr>
