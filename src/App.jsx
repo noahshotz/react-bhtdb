@@ -1,10 +1,7 @@
 import { useState } from 'react'
-import axios from 'axios'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import Datasets from './components/Datasets'
+import './App.scss'
+import './Rotate.scss'
 import Questions from './components/Questions'
-import { BsArrowRightShort as ArrowRight } from "react-icons/bs";
 
 function App() {
   const [count, setCount] = useState(0)

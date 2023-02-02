@@ -80,19 +80,21 @@ export default function question3() {
                                 ))}
                             </tbody>
                         </table>
-                        <Doughnut
-                            datasetIdKey='id'
-                            data={{
-                                labels: myData.map((label) => (label.max_players)),
-                                datasets: [
-                                    {
-                                        id: 1,
-                                        label: 'Anfragen',
-                                        data: myData.map((label) => (label.count))
-                                    }
-                                ],
-                            }}
-                        />
+                        <div className="chart-ct">
+                            <Doughnut
+                                datasetIdKey='id'
+                                data={{
+                                    labels: myData.map((label) => (label.max_players)),
+                                    datasets: [
+                                        {
+                                            id: 1,
+                                            label: 'Anfragen',
+                                            data: myData.map((label) => (label.count))
+                                        }
+                                    ],
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

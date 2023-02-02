@@ -73,7 +73,7 @@ export default function question1() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((index, rows) => (
+                                {myData.map((rows) => (
                                     <tr>
                                         <td>#</td>
                                         <td>{rows.genre}</td>
