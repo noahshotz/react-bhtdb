@@ -47,7 +47,10 @@ export default function question4() {
                         <h4>Abfrage:</h4>
                         <code>{query}</code>
                         <h4>Rückgabe:</h4>
-                        <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+                        <div className="isLoading">
+                            <h3>Data is loading <Loading className="rotating" /></h3>
+                            <small>Geschätzte Ladezeit: - s</small>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>
@@ -74,28 +77,30 @@ export default function question4() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows,index) => (
+                                {myData.map((rows, index) => (
                                     <tr key={index}>
-                                        <td>{index+1}</td>
+                                        <td>{index + 1}</td>
                                         <td>{rows.sitz}</td>
                                         <td>{rows.count}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <Doughnut
-                            datasetIdKey='id'
-                            data={{
-                                labels: myData.map((label) => (label.sitz)),
-                                datasets: [
-                                    {
-                                        id: 1,
-                                        label: 'Anzahl',
-                                        data: myData.map((label) => (label.count)),
-                                    }
-                                ],
-                            }}
-                        />
+                        <div className="chart-ct">
+                            <Doughnut
+                                datasetIdKey='id'
+                                data={{
+                                    labels: myData.map((label) => (label.sitz)),
+                                    datasets: [
+                                        {
+                                            id: 1,
+                                            label: 'Anzahl',
+                                            data: myData.map((label) => (label.count)),
+                                        }
+                                    ],
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

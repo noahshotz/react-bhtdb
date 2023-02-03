@@ -46,7 +46,10 @@ export default function question1() {
                         <h4>Abfrage:</h4>
                         <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
                         <h4>Rückgabe:</h4>
-                        <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+                        <div className="isLoading">
+                            <h3>Data is loading <Loading className="rotating" /></h3>
+                            <small>Geschätzte Ladezeit: - s</small>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>
