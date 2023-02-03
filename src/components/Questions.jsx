@@ -23,7 +23,7 @@ const QuestionsArr = [
   },
   {
     // Frage 4
-    question: "Waren online oder offline-Spiele beliebter?",
+    question: "In welchem Land wurden die meisten der von uns untersuchten Spiele entwickelt?",
     query: "",
   },
   {

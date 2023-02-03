@@ -30,6 +30,7 @@ export default function question3() {
 
     const i = 3
     const question = "Waren Solo oder Co-OP Spiele häufiger in den Suchanfragen?"
+    const query = "SELECT videogames.max_players, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') GROUP BY videogames.max_players ORDER BY count desc"
 
     useEffect(() => {
         getQ3(isLoading, setLoading, myData, setMyData)
@@ -44,7 +45,7 @@ export default function question3() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT videogames.max_players, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, ' %') OR QUERYDATA.QUERY LIKE videogames.title GROUP BY videogames.max_players ORDER BY count desc</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -62,7 +63,7 @@ export default function question3() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT videogames.max_players, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, ' %') OR QUERYDATA.QUERY LIKE videogames.title GROUP BY videogames.max_players ORDER BY count desc</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>
@@ -74,7 +75,7 @@ export default function question3() {
                             <tbody>
                                 {myData.map((rows) => (
                                     <tr>
-                                        <td>{rows.max_players}</td>
+                                        <td>{rows.max_players  === 1 ? "Single player" : "Co-Op"}</td>
                                         <td>{rows.count}</td>
                                     </tr>
                                 ))}

@@ -1,5 +1,7 @@
 /* rotation */
 
+$speed: 3s;
+
 @-webkit-keyframes rotating
 
 /* Safari and Chrome */
@@ -36,9 +38,9 @@
 }
 
 .rotating {
-    -webkit-animation: rotating 3s linear infinite;
-    -moz-animation: rotating 3s linear infinite;
-    -ms-animation: rotating 3s linear infinite;
-    -o-animation: rotating 3s linear infinite;
-    animation: rotating 3s linear infinite;
+    -webkit-animation: rotating $speed linear infinite;
+    -moz-animation: rotating $speed linear infinite;
+    -ms-animation: rotating $speed linear infinite;
+    -o-animation: rotating $speed linear infinite;
+    animation: rotating $speed linear infinite;
 }

@@ -9,7 +9,7 @@ import { FiLoader as Loading } from "react-icons/fi"
 async function getQ5(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
-    const request = "q5"
+    const request = "q7"
     const fetchURL = proxy + baseURL + request
 
     await axios.get(fetchURL,
@@ -30,6 +30,7 @@ export default function question1() {
 
     const i = 7
     const question = "Welche Hersteller waren indirekt am verbreitetsten in den Suchanfragen?"
+    const query = "SELECT videogames.publisher, count(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE concat('%', videogames.title, '%') GROUP BY videogames.publisher ORDER BY count DESC LIMIT 10"
 
     useEffect(() => {
         getQ5(isLoading, setLoading, myData, setMyData)
@@ -44,7 +45,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -62,7 +63,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>
@@ -73,10 +74,10 @@ export default function question1() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows) => (
-                                    <tr key={rows.pId}>
-                                        <td>{rows.pId}</td>
-                                        <td>{rows.platform}</td>
+                                {myData.map((rows, index) => (
+                                    <tr key={index}>
+                                        <td>{index+1}</td>
+                                        <td>{rows.publisher}</td>
                                         <td>{rows.count}</td>
                                     </tr>
                                 ))}
@@ -85,7 +86,7 @@ export default function question1() {
                         <Bar
                             datasetIdKey='id'
                             data={{
-                                labels: myData.map((label) => (label.platform)),
+                                labels: myData.map((label) => (label.publisher)),
                                 datasets: [
                                     {
                                         id: 1,

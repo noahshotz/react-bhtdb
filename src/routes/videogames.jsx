@@ -39,7 +39,7 @@ export default function Videogames() {
                     <div className="cp-ct">
                         <h3>Tabelle <i>videogames</i></h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT * from videogames LIMIT 5</code>
+                        <code>SELECT * from videogames LIMIT 10</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -55,7 +55,7 @@ export default function Videogames() {
                     <a href="/" className="btn-back"><ArrowLeft /> Go back</a>
                     <h3>Tabelle <i>videogames</i></h3>
                     <h4>Abfrage:</h4>
-                    <code>SELECT * from videogames LIMIT 5</code>
+                    <code>SELECT * from videogames LIMIT 10</code>
                     <h4>Rückgabe:</h4>
                     <table>
                         <thead>
@@ -77,7 +77,7 @@ export default function Videogames() {
                                     <td>{rows.max_players}</td>
                                     <td>{rows.genre}</td>
                                     <td>{rows.publisher}</td>
-                                    <td>{rows.name}</td>
+                                    <td>{rows.platform}</td>
                                     <td>{rows.release_year}</td>
                                 </tr>
                             ))}

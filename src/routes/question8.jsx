@@ -28,8 +28,9 @@ export default function question8() {
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
-    const i = 1
+    const i = 8
     const question = "Welche Spiele verzeichnen eine Häufung an (oder gar keine) Suchen nach Cheatcodes?"
+    const query = "SELECT videogames.gId, videogames.title as game, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') GROUP BY videogames.title ORDER BY count desc LIMIT 10"
 
     useEffect(() => {
         getQ8(isLoading, setLoading, myData, setMyData)
@@ -44,7 +45,7 @@ export default function question8() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT videogames.gId, videogames.title as game, COUNT(*) AS count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -62,7 +63,7 @@ export default function question8() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>
@@ -73,9 +74,9 @@ export default function question8() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows) => (
-                                    <tr key={rows.gId}>
-                                        <td>{rows.gId}</td>
+                                {myData.map((rows, index) => (
+                                    <tr key={index}>
+                                        <td>{index+1}</td>
                                         <td>{rows.game}</td>
                                         <td>{rows.count}</td>
                                     </tr>

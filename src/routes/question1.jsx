@@ -30,6 +30,7 @@ export default function question1() {
 
     const i = 1
     const question = "Was waren die Top 10 Computerspiele?"
+    const query = "SELECT videogames.gId, videogames.title as game, COUNT(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10"
 
     useEffect(() => {
         getQ5(isLoading, setLoading, myData, setMyData)
@@ -44,7 +45,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT videogames.gId, videogames.title as game, COUNT(*) AS count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <div className="isLoading">
                             <h3>Data is loading <Loading className="rotating" /></h3>
@@ -65,7 +66,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>

@@ -65,7 +65,6 @@ export default function Publisher() {
                                 <th>Sitz</th>
                                 <th>Gründung</th>
                                 <th>Aktiv</th>
-                                <th>Logo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,7 +75,6 @@ export default function Publisher() {
                                     <td>{rows.sitz}</td>
                                     <td>{rows.gruendung}</td>
                                     <td>{rows.aktiv}</td>
-                                    <td>{rows.logo}</td>
                                 </tr>
                             ))}
                         </tbody>

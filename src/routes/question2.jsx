@@ -30,6 +30,7 @@ export default function question1() {
 
     const i = 2
     const question = "Welche Genre waren am gefragtesten?"
+    const query = "SELECT videogames.genre, count(*) as count from QUERYDATA inner join videogames on QUERYDATA.QUERY LIKE concat('%', REPLACE(videogames.title, 'The ', ''),'%') GROUP BY videogames.genre order by count desc"
 
     useEffect(() => {
         getData(isLoading, setLoading, myData, setMyData)
@@ -44,7 +45,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT videogames.genre, count(*) as count from QUERYDATA inner join videogames on QUERYDATA.QUERY LIKE concat('% ', REPLACE(videogames.title, 'The ', ''),' %') GROUP BY videogames.genre order by count desc</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
                     </div>
@@ -62,7 +63,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT videogames.genre, count(*) as count from QUERYDATA inner join videogames on QUERYDATA.QUERY LIKE concat('% ', REPLACE(videogames.title, 'The ', ''),' %') GROUP BY videogames.genre order by count desc</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>
@@ -73,9 +74,9 @@ export default function question1() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows) => (
-                                    <tr>
-                                        <td>#</td>
+                                {myData.map((rows, index) => (
+                                    <tr key={index}>
+                                        <td>{index+1}</td>
                                         <td>{rows.genre}</td>
                                         <td>{rows.count}</td>
                                     </tr>
@@ -89,7 +90,7 @@ export default function question1() {
                                 datasets: [
                                     {
                                         id: 1,
-                                        label: 'Genre',
+                                        label: 'Anfragen:',
                                         data: myData.map((label) => (label.count)),
                                     }
                                 ],
