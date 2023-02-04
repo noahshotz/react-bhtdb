@@ -6,10 +6,10 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ5(isLoading, setLoading, myData, setMyData) {
+async function getQuestion(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
-    const request = "q5"
+    const request = "q10"
     const fetchURL = proxy + baseURL + request
 
     await axios.get(fetchURL,
@@ -23,16 +23,17 @@ async function getQ5(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question1() {
+export default function question() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
     const i = 10
-    const question = "Gibt es Häufungen in Suchen/Käufen von Spielen in bestimmten Staaten?"
+    const question = "Was sind die am längsten bestehenden Entwickler der von uns untersuchten Spiele?"
+    const query = "select publisher.name, publisher.gruendung from publisher where publisher.aktiv LIKE 1 ORDER BY publisher.gruendung ASC LIMIT 10"
 
     useEffect(() => {
-        getQ5(isLoading, setLoading, myData, setMyData)
+        getQuestion(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -44,7 +45,7 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <div className="isLoading">
                             <h3>Data is loading <Loading className="rotating" /></h3>
@@ -65,22 +66,22 @@ export default function question1() {
                         <h2>Frage {i}</h2>
                         <h3>{question}</h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC</code>
+                        <code>{query}</code>
                         <h4>Rückgabe:</h4>
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">pId</th>
-                                    <th>Plattform</th>
-                                    <th>Anfragen</th>
+                                    <th className="id-col">#</th>
+                                    <th>Entwickler</th>
+                                    <th>Gründung</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows) => (
-                                    <tr key={rows.pId}>
-                                        <td>{rows.pId}</td>
-                                        <td>{rows.platform}</td>
-                                        <td>{rows.count}</td>
+                                {myData.map((rows, index) => (
+                                    <tr key={index}>
+                                        <td>{index+1}</td>
+                                        <td>{rows.name}</td>
+                                        <td>{rows.gruendung}</td>
                                     </tr>
                                 ))}
                             </tbody>

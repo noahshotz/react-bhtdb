@@ -8,64 +8,53 @@ const QuestionsArr = [
   {
     // Frage 1
     question:
-      "Was waren die Top 10 Computerspiele?",
-    query: "SELECT videogames.title AS game, COUNT(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE '%' || videogames.title || '%' GROUP BY videogames.title LIMIT 10",
+      "Was waren die Top 10 Computerspiele?"
   },
   {
     // Frage 2
-    question: "Welche Genre waren am gefragtesten?",
-    query: "SELECT ... ",
+    question: "Welche Genre waren am gefragtesten?"
   },
   {
     // Frage 3
-    question: "Waren Solo oder Co-OP Spiele häufiger in den Suchanfragen?",
-    query: "SELECT ...",
+    question: "Waren Solo oder Co-OP Spiele häufiger in den Suchanfragen?"
   },
   {
     // Frage 4
-    question: "In welchem Land wurden die meisten der von uns untersuchten Spiele entwickelt?",
-    query: "",
+    question: "In welchem Land wurden die meisten der von uns untersuchten Spiele entwickelt?"
   },
   {
     // Frage 5
-    question: "Wie sah die Verteilung auf verschiedenen Plattformen aus?",
-    query:
-      "SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('% ', platform.name, '%') GROUP BY name ORDER BY count DESC",
+    question: "Wie sah die Verteilung auf verschiedenen Plattformen aus?"
   },
   {
     // Frage 6
     question:
-      "Welche Hersteller waren direkt am verbreitetsten in den Suchanfragen?",
-    query: "SELECT ...",
+      "Welche Hersteller waren direkt am verbreitetsten in den Suchanfragen?"
   },
   {
     // Frage 7
     question:
-      "Welche Hersteller waren indirekt am verbreitetsten in den Suchanfragen?",
-    query: "SELECT ...",
+      "Welche Hersteller waren indirekt am verbreitetsten in den Suchanfragen?"
   },
   {
     // Frage 8
     question:
-      "Welche Spiele verzeichnen eine Häufung an (oder gar keine) Suchen nach Cheatcodes?",
-    query: "SELECT ...",
+      "Welche Spiele verzeichnen eine Häufung an (oder gar keine) Suchen nach Cheatcodes?"
   },
   {
     // Frage 9
-    question: "Welche Websites wurden dafür frequentiert?",
-    query: "SELECT ...",
+    question: "Welche Websites wurden dafür frequentiert?"
   },
   {
     // Frage 10
     question:
-      "Gibt es Häufungen in Suchen/Käufen von Spielen in bestimmten Staaten?",
-    query: "SELECT ...",
+      "Was sind die am längsten bestehenden Entwickler der von uns untersuchten Spiele?"
   },
 ];
 
 export default function Questions() {
   const elements = QuestionsArr.map((Questions, index) => {
-    let myIndex = index+1;
+    let myIndex = index + 1;
     return (
       <React.Fragment key={index}>
         <div className="question-card">

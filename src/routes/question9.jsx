@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ5(isLoading, setLoading, myData, setMyData) {
+async function getQuestion(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q9"
@@ -23,7 +23,7 @@ async function getQ5(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question1() {
+export default function question() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
@@ -32,8 +32,11 @@ export default function question1() {
     const question = "Welche Websites wurden dafür frequentiert?"
     const query = "SELECT QUERYDATA.CLICKURL, count(*) as count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') AND QUERYDATA.CLICKURL IS NOT NULL GROUP BY QUERYDATA.CLICKURL ORDER BY count DESC LIMIT 10"
 
+    // match `http://www.` or `http://` from CLICKURL
+    const regex = /http:\/\/[w.]*/
+
     useEffect(() => {
-        getQ5(isLoading, setLoading, myData, setMyData)
+        getQuestion(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -80,7 +83,7 @@ export default function question1() {
                                 {myData.map((rows, index) => (
                                     <tr key={index}>
                                         <td>{index+1}</td>
-                                        <td>{rows.CLICKURL}</td>
+                                        <td>{rows.CLICKURL.replace(regex, '')}</td>
                                         <td>{rows.count}</td>
                                     </tr>
                                 ))}
@@ -89,11 +92,11 @@ export default function question1() {
                         <Bar
                             datasetIdKey='id'
                             data={{
-                                labels: myData.map((label) => (label.platform)),
+                                labels: myData.map((label) => (label.CLICKURL.replace(regex, ''))),
                                 datasets: [
                                     {
                                         id: 1,
-                                        label: 'Plattformen',
+                                        label: 'Clicks',
                                         data: myData.map((label) => (label.count)),
                                     }
                                 ],

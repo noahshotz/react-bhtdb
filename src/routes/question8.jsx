@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ8(isLoading, setLoading, myData, setMyData) {
+async function getQuestion(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q8"
@@ -23,7 +23,7 @@ async function getQ8(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question8() {
+export default function question() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
@@ -33,7 +33,7 @@ export default function question8() {
     const query = "SELECT videogames.gId, videogames.title as game, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') GROUP BY videogames.title ORDER BY count desc LIMIT 10"
 
     useEffect(() => {
-        getQ8(isLoading, setLoading, myData, setMyData)
+        getQuestion(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
