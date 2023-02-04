@@ -20,7 +20,8 @@ async function getQuestion(isLoading, setLoading, myData, setMyData) {
         }).then(response => {
             setMyData(response.data);
             setLoading(false);
-        })
+        }
+        )
 }
 
 export default function question() {
@@ -79,7 +80,7 @@ export default function question() {
                             <tbody>
                                 {myData.map((rows, index) => (
                                     <tr key={index}>
-                                        <td>{index+1}</td>
+                                        <td>{index + 1}</td>
                                         <td>{rows.name}</td>
                                         <td>{rows.gruendung}</td>
                                     </tr>
@@ -88,15 +89,27 @@ export default function question() {
                         </table>
                         <Bar
                             datasetIdKey='id'
+                            options={{
+                                indexAxis: 'y',
+                                scales: {
+                                    x: {
+                                        beginAtZero: false,
+                                        max: 2023,
+                                        ticks: {
+                                            callback: (label) => `${label}`
+                                        }
+                                    }
+                                }
+                            }}
                             data={{
-                                labels: myData.map((label) => (label.platform)),
+                                labels: myData.map(label => label.name),
                                 datasets: [
                                     {
                                         id: 1,
-                                        label: 'Plattformen',
-                                        data: myData.map((label) => (label.count)),
+                                        label: 'Zeitraum',
+                                        data: myData.map(label => [label.gruendung, 2023])
                                     }
-                                ],
+                                ]
                             }}
                         />
                     </div>
