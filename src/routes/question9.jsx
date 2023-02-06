@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQuestion(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q9"
@@ -23,20 +23,20 @@ async function getQuestion(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question() {
+export default function question9() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
     const i = 9
     const question = "Welche Websites wurden dafür frequentiert?"
-    const query = "SELECT QUERYDATA.CLICKURL, count(*) as count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') AND QUERYDATA.CLICKURL IS NOT NULL GROUP BY QUERYDATA.CLICKURL ORDER BY count DESC LIMIT 10"
+    const query = "SELECT QUERYDATA.CLICKURL, COUNT(*) as count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') AND QUERYDATA.CLICKURL IS NOT NULL GROUP BY QUERYDATA.CLICKURL ORDER BY count DESC LIMIT 10"
 
     // match `http://www.` or `http://` from CLICKURL
     const regex = /http:\/\/[w.]*/
 
     useEffect(() => {
-        getQuestion(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -74,7 +74,7 @@ export default function question() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">pId</th>
+                                    <th className="id-col">#</th>
                                     <th>Plattform</th>
                                     <th>Anfragen</th>
                                 </tr>

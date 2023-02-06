@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQuestion(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q10"
@@ -24,17 +24,17 @@ async function getQuestion(isLoading, setLoading, myData, setMyData) {
         )
 }
 
-export default function question() {
+export default function question10() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
     const i = 10
     const question = "Was sind die am längsten bestehenden Entwickler der von uns untersuchten Spiele?"
-    const query = "select publisher.name, publisher.gruendung from publisher where publisher.aktiv LIKE 1 ORDER BY publisher.gruendung ASC LIMIT 10"
+    const query = "SELECT publisher.name, publisher.gruendung FROM publisher WHERE publisher.aktiv LIKE 1 ORDER BY publisher.gruendung ASC LIMIT 10"
 
     useEffect(() => {
-        getQuestion(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getSampleData(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "querydata"
@@ -18,7 +18,6 @@ async function getSampleData(isLoading, setLoading, myData, setMyData) {
         }).then(response => {
             setMyData(response.data);
             setLoading(false);
-
         })
 }
 
@@ -28,7 +27,7 @@ export default function Querydata() {
     const [myData, setMyData] = useState();
 
     useEffect(() => {
-        getSampleData(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -39,9 +38,12 @@ export default function Querydata() {
                     <div className="cp-ct">
                         <h3>Tabelle <i>QUERYDATA</i></h3>
                         <h4>Abfrage:</h4>
-                        <code>SELECT * from QUERYDATA LIMIT 5</code>
+                        <code>SELECT * FROM QUERYDATA LIMIT 5</code>
                         <h4>Rückgabe:</h4>
-                        <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+                        <div className="isLoading">
+                            <h3>Data is loading <Loading className="rotating" /></h3>
+                            <small>Geschätzte Ladezeit: - s</small>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>
@@ -53,9 +55,9 @@ export default function Querydata() {
             <div className="wrapper">
                 <div className="cp-ct">
                     <a href="/" className="btn-back"><ArrowLeft /> Go back</a>
-                    <h3>Tabelle <i>videogames</i></h3>
+                    <h3>Tabelle <i>QUERYDATA</i></h3>
                     <h4>Abfrage:</h4>
-                    <code>SELECT * from videogames LIMIT 5</code>
+                    <code>SELECT * from QUERYDATA LIMIT 5</code>
                     <h4>Rückgabe:</h4>
                     <table>
                         <thead>
@@ -76,7 +78,7 @@ export default function Querydata() {
                                     <td>{rows.QUERY}</td>
                                     <td>{rows.QUERYTIME}</td>
                                     <td>{rows.ITEMRANK}</td>
-                                    <td>{rows.CLICKURL}</td>
+                                    <td className="url-col">{rows.CLICKURL}</td>
                                 </tr>
                             ))}
                         </tbody>

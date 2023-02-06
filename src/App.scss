@@ -102,7 +102,7 @@ code {
 }
 
 table {
-    table-layout: fixed;
+    table-layout: auto;
     border-collapse: collapse;
     width: 100%;
     font-size: 1.5rem;
@@ -125,10 +125,15 @@ td {
 }
 
 .id-col {
-    width: 4rem;
+    width: 6rem;
+}
+
+.url-col {
+    word-break: break-all;
 }
 
 .cp-ct {
+    min-width: 800px;
     padding: 3rem;
     margin-bottom: 3rem;
     border: solid 1px aliceblue;

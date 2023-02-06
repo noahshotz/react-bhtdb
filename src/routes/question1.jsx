@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ5(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q1"
@@ -30,10 +30,10 @@ export default function question1() {
 
     const i = 1
     const question = "Was waren die Top 10 Computerspiele?"
-    const query = "SELECT videogames.gId, videogames.title as game, COUNT(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10"
+    const query = "SELECT videogames.gId, videogames.title AS game, COUNT(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10"
 
     useEffect(() => {
-        getQ5(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -71,15 +71,15 @@ export default function question1() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">gId</th>
+                                    <th className="id-col">#</th>
                                     <th>Spiel</th>
                                     <th>Anfragen</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {myData.map((rows) => (
-                                    <tr key={rows.gId}>
-                                        <td>{rows.gId}</td>
+                                {myData.map((rows, index) => (
+                                    <tr key={index}>
+                                        <td>{index+1}</td>
                                         <td>{rows.game}</td>
                                         <td>{rows.count}</td>
                                     </tr>

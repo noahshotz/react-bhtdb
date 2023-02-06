@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ3(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q3"
@@ -30,10 +30,10 @@ export default function question3() {
 
     const i = 3
     const question = "Waren Solo oder Co-OP Spiele häufiger in den Suchanfragen?"
-    const query = "SELECT videogames.max_players, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') GROUP BY videogames.max_players ORDER BY count desc"
+    const query = "SELECT videogames.max_players, COUNT(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') GROUP BY videogames.max_players ORDER BY count DESC"
 
     useEffect(() => {
-        getQ3(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {

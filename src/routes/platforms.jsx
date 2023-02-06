@@ -5,7 +5,7 @@ import { FiLoader as Loading } from "react-icons/fi"
 import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 
-async function getSampleData(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "platform"
@@ -29,7 +29,7 @@ export default function Platforms() {
     const [myData, setMyData] = useState();
 
     useEffect(() => {
-        getSampleData(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -42,7 +42,10 @@ export default function Platforms() {
                         <h4>Abfrage:</h4>
                         <code>SELECT * FROM platform</code>
                         <h4>Rückgabe:</h4>
-                        <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+                        <div className="isLoading">
+                            <h3>Data is loading <Loading className="rotating" /></h3>
+                            <small>Geschätzte Ladezeit: - s</small>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>
@@ -61,7 +64,7 @@ export default function Platforms() {
                     <table>
                         <thead>
                             <tr>
-                                <th className="id-col">ID</th>
+                                <th className="id-col">pId</th>
                                 <th>Name</th>
                                 <th>Hersteller</th>
                                 <th>Release year</th>

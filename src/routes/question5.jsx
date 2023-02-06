@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ5(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q5"
@@ -23,17 +23,17 @@ async function getQ5(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question1() {
+export default function question5() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
     const i = 5
     const question = "Wie sah die Verteilung auf verschiedenen Plattformen aus?"
-    const query = "SELECT platform.pId, CONCAT(hersteller, ' ', name) as platform, COUNT(*) AS count from platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', platform.name, '%') GROUP BY name ORDER BY count DESC LIMIT 10"
+    const query = "SELECT platform.pId, CONCAT(hersteller, ' ', name) AS platform, COUNT(*) AS count FROM platform, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', platform.name, '%') GROUP BY name ORDER BY count DESC LIMIT 10"
 
     useEffect(() => {
-        getQ5(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {

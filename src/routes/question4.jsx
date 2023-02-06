@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQ4(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q4"
@@ -30,10 +30,10 @@ export default function question4() {
 
     const i = 4
     const question = "In welchem Land wurden die meisten der von uns untersuchten Spiele entwickelt?"
-    const query = "select publisher.sitz, count(*) as count from videogames left join publisher on videogames.publisher = publisher.pubId group by publisher.sitz order by count desc limit 10"
+    const query = "SELECT publisher.sitz, COUNT(*) AS count FROM videogames LEFT JOIN publisher ON videogames.publisher = publisher.pubId GROUP BY publisher.sitz ORDER BY count DESC LIMIT 10"
 
     useEffect(() => {
-        getQ4(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -71,7 +71,7 @@ export default function question4() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">pId</th>
+                                    <th className="id-col">#</th>
                                     <th>Plattform</th>
                                     <th>Anzahl</th>
                                 </tr>

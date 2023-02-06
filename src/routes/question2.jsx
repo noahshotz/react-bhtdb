@@ -23,14 +23,14 @@ async function getData(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question1() {
+export default function question2() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
     const i = 2
     const question = "Welche Genre waren am gefragtesten?"
-    const query = "SELECT videogames.genre, count(*) as count from QUERYDATA inner join videogames on QUERYDATA.QUERY LIKE concat('%', REPLACE(videogames.title, 'The ', ''),'%') GROUP BY videogames.genre order by count desc"
+    const query = "SELECT videogames.genre, count(*) AS count FROM QUERYDATA INNER JOIN videogames ON QUERYDATA.QUERY LIKE CONCAT('%', REPLACE(videogames.title, 'The ', ''),'%') GROUP BY videogames.genre ORDER BY count DESC"
 
     useEffect(() => {
         getData(isLoading, setLoading, myData, setMyData)

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getSampleData(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "videogames"
@@ -28,7 +28,7 @@ export default function Videogames() {
     const [myData, setMyData] = useState();
 
     useEffect(() => {
-        getSampleData(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -41,7 +41,10 @@ export default function Videogames() {
                         <h4>Abfrage:</h4>
                         <code>SELECT * from videogames LIMIT 10</code>
                         <h4>Rückgabe:</h4>
-                        <h3 className="isLoading">Data is loading <Loading className="rotating" /></h3>
+                        <div className="isLoading">
+                            <h3>Data is loading <Loading className="rotating" /></h3>
+                            <small>Geschätzte Ladezeit: - s</small>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>
@@ -60,7 +63,7 @@ export default function Videogames() {
                     <table>
                         <thead>
                             <tr>
-                                <th className="id-col">ID</th>
+                                <th className="id-col">gId</th>
                                 <th>Titel</th>
                                 <th>Max. players</th>
                                 <th>Genre</th>

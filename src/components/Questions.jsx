@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { BsArrowRightShort as ArrowRight } from "react-icons/bs";
-
-import MyQuestion from "./MyQuestion";
 
 const QuestionsArr = [
   {

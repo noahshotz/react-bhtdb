@@ -6,7 +6,7 @@ import { BsArrowLeftShort as ArrowLeft } from "react-icons/bs";
 
 import { FiLoader as Loading } from "react-icons/fi"
 
-async function getQuestion(isLoading, setLoading, myData, setMyData) {
+async function getData(isLoading, setLoading, myData, setMyData) {
     const proxy = "https://web-production-0fb1.up.railway.app/"
     const baseURL = "backend-bhtdb-production.up.railway.app/"
     const request = "q8"
@@ -23,17 +23,17 @@ async function getQuestion(isLoading, setLoading, myData, setMyData) {
         })
 }
 
-export default function question() {
+export default function question8() {
 
     const [isLoading, setLoading] = useState(true);
     const [myData, setMyData] = useState();
 
     const i = 8
     const question = "Welche Spiele verzeichnen eine Häufung an (oder gar keine) Suchen nach Cheatcodes?"
-    const query = "SELECT videogames.gId, videogames.title as game, count(*) as count from videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') GROUP BY videogames.title ORDER BY count desc LIMIT 10"
+    const query = "SELECT videogames.gId, videogames.title AS game, COUNT(*) AS count FROM videogames, QUERYDATA WHERE QUERYDATA.QUERY LIKE CONCAT('%', videogames.title, '%') AND QUERYDATA.QUERY LIKE CONCAT('%', 'cheat', '%') GROUP BY videogames.title ORDER BY count DESC LIMIT 10"
 
     useEffect(() => {
-        getQuestion(isLoading, setLoading, myData, setMyData)
+        getData(isLoading, setLoading, myData, setMyData)
     }, [])
 
     if (isLoading) {
@@ -71,7 +71,7 @@ export default function question() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th className="id-col">gId</th>
+                                    <th className="id-col">#</th>
                                     <th>Spiel</th>
                                     <th>Anfragen</th>
                                 </tr>

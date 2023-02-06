@@ -1,11 +1,8 @@
-import { useState } from 'react'
 import './App.scss'
 import './Rotate.scss'
 import Questions from './components/Questions'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="wrapper">
       <div className="header">
